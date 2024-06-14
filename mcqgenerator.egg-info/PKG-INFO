@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: mcqgenerator
+Version: 0.0.1
+Author: M Sri Sujan
+Author-email: srisujanbannu@gmail.com
+Requires-Dist: langchain-huggingface
+Requires-Dist: langchain
+Requires-Dist: streamlit
+Requires-Dist: python-dotenv
+Requires-Dist: PyPDF2
+Requires-Dist: langchain_google_genai
+Requires-Dist: langchain_community
+Requires-Dist: huggingface_hub

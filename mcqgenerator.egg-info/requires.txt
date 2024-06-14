@@ -1,0 +1,8 @@
+langchain-huggingface
+langchain
+streamlit
+python-dotenv
+PyPDF2
+langchain_google_genai
+langchain_community
+huggingface_hub
