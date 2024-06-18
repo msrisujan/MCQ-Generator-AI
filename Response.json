@@ -4,12 +4,11 @@
         "mcq": "multiple choice questions",
         "options":{
             "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here"
+            "b": "choice here"
         },
         
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "explanation": "explanation for why the answer is correct"
     },
     
     "2": {
@@ -17,12 +16,11 @@
         "mcq": "multiple choice questions",
         "options":{
             "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here"
+            "b": "choice here"
         },
         
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "explanation": "explanation for why the answer is correct"
     },
     
     "3": {
@@ -30,11 +28,10 @@
         "mcq": "multiple choice questions",
         "options":{
             "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here"
+            "b": "choice here"
         },
         
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "explanation": "explanation for why the answer is correct"
     }
 }

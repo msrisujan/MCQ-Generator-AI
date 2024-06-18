@@ -6,6 +6,8 @@ langchain_google_genai
 langchain_community
 langchain-huggingface
 huggingface_hub
+python-docx
+python-pptx
 
 
 -e .

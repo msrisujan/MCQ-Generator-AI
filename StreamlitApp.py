@@ -25,6 +25,8 @@ with st.form("user_inputs"):
     #Input Fields
     mcq_count=st.number_input("No. of MCQs", min_value=3, max_value=50)
 
+    choices_count=st.number_input("No of choices", min_value=3, max_value=5)
+
     #Subject
     subject=st.text_input("Insert Subject",max_chars=20)
 
@@ -45,6 +47,7 @@ with st.form("user_inputs"):
                     {
                     "text": text,
                     "number": mcq_count,
+                    "choicesnum": choices_count,
                     "subject":subject,
                     "tone": tone,
                     "response_json": json.dumps(RESPONSE_JSON)

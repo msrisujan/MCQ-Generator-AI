@@ -3,13 +3,17 @@ import PyPDF2
 import json
 import traceback
 
+import PyPDF2
+import docx
+from pptx import Presentation
+
 def read_file(file):
     if file.name.endswith(".pdf"):
         try:
-            pdf_reader=PyPDF2.PdfReader(file)
-            text=""
+            pdf_reader = PyPDF2.PdfReader(file)
+            text = ""
             for page in pdf_reader.pages:
-                text+=page.extract_text()
+                text += page.extract_text()
             return text
             
         except Exception as e:
@@ -18,10 +22,29 @@ def read_file(file):
     elif file.name.endswith(".txt"):
         return file.read().decode("utf-8")
     
+    elif file.name.endswith(".docx"):
+        try:
+            doc = docx.Document(file)
+            text = "\n".join([para.text for para in doc.paragraphs])
+            return text
+        except Exception as e:
+            raise Exception("error reading the DOCX file")
+    
+    elif file.name.endswith(".pptx"):
+        try:
+            presentation = Presentation(file)
+            text = ""
+            for slide in presentation.slides:
+                for shape in slide.shapes:
+                    if hasattr(shape, "text"):
+                        text += shape.text + "\n"
+            return text
+        except Exception as e:
+            raise Exception("error reading the PPTX file")
+    
     else:
-        raise Exception(
-            "unsupported file format only pdf and text file suppoted"
-            )
+        raise Exception("unsupported file format; only PDF, DOCX, PPTX, and TXT files are supported")
+
 
 def get_table_data(quiz_str):
     try:
@@ -37,17 +60,29 @@ def get_table_data(quiz_str):
         quiz_table_data=[]
         
         # iterate over the quiz dictionary and extract the required information
-        for key,value in quiz_dict.items():
-            mcq=value["mcq"]
-            options=" || ".join(
-                [
-                    f"{option}-> {option_value}" for option, option_value in value["options"].items()
-                 
-                 ]
-            )
+        for key, value in quiz_dict.items():
+            mcq = value["mcq"]
+            options_dict = value["options"]
+            correct = value["correct"]
+            explanation = value["explanation"]
             
-            correct=value["correct"]
-            quiz_table_data.append({"MCQ": mcq,"Choices": options, "Correct": correct})
+            # Prepare the row with MCQ, correct answer, and explanation
+            # row = {
+            #     "MCQ": mcq,
+            #     "Correct": correct,
+            #     "Explanation": explanation
+            # }
+            row = {}
+            row["MCQ"] = mcq
+            
+            # Add each option as a separate column
+            for option, option_value in options_dict.items():
+                row[option] = option_value
+            correct_ans = row[correct]
+            row["Correct"] = correct_ans
+            row["Explanation"] = explanation
+            
+            quiz_table_data.append(row)
         
         return quiz_table_data
         
